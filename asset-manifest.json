@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/coach-front/static/css/main.ff1589bb.css",
+    "main.js": "/coach-front/static/js/main.b9309078.js",
+    "index.html": "/coach-front/index.html",
+    "main.ff1589bb.css.map": "/coach-front/static/css/main.ff1589bb.css.map",
+    "main.b9309078.js.map": "/coach-front/static/js/main.b9309078.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ff1589bb.css",
+    "static/js/main.b9309078.js"
+  ]
+}
