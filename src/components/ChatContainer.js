@@ -99,8 +99,13 @@ function ChatContainer() {
         </div>
       </div>
       {/* chat section */}
-      <div className="w-full h-full flex items-start justify-center overflow-hidden overflow-y-auto scroll">
+      <div className="w-full h-full flex flex-col items-center justify-start overflow-hidden overflow-y-auto scroll">
         <Chat />
+        {isLoading && (
+           <div className="w-4/5 flex justify-start items-center my-4">
+           <div className="w-7 h-7 mx-2 rounded-full animate-pulse bg-gray-500"></div>
+         </div>
+        )}
       </div>
 
       {/* chat input section */}

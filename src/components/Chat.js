@@ -47,7 +47,7 @@ function Chat() {
                                 <p className='text-white text-[15px] group px-3'>
                                 <ReactMarkdown 
                                     children={msg?.text} 
-                                    remarkPlugins={[remarkGfm, remarkParse, remarkBreaks]} // Добавляем remark-breaks
+                                    remarkPlugins={[remarkGfm, remarkParse, remarkBreaks]}
                                 />
                                 </p>
                             </div>

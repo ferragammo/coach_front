@@ -46,10 +46,9 @@ const AppContext = ({ children }) => {
                   newChat.data.id,
                   text
                );
-               console.log(responseMessage)
                setMessage((prevMessages) => [
                   ...prevMessages,
-                  { text: responseMessage, isBot: true },
+                  { text: responseMessage.text, isBot: true },
                ]);
             } else {
                console.error("Failed to create a new chat");
@@ -62,7 +61,7 @@ const AppContext = ({ children }) => {
          const responseMessage = await createMessage(selectedChat, text);
          setMessage((prevMessages) => [
             ...prevMessages,
-            { text: responseMessage, isBot: true },
+            { text: responseMessage.text, isBot: true },
          ]);
       }
       setIsLoading(false);
@@ -88,10 +87,10 @@ const AppContext = ({ children }) => {
 
          if (result.data.length > 0) {
             const formattedMessages = result.data.map((msg) => ({
-               text: msg.text,
-               isBot: msg.author === "assistant",
-               file: msg?.fileUrl,
+               text: msg.content,
+               isBot: msg.role === "ai",
             }));
+            console.log(formattedMessages);
 
             setMessage(formattedMessages);
          } else {
