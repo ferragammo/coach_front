@@ -16,9 +16,15 @@ export const getAllChatMessages = async (chatId) => {
    }
 };
 
-export const createMessage = async (chatId, text) => {
+export const createMessage = async (chatId, text, promptTemplate) => {
+
+   const payload = {
+      text,
+      promptTemplate
+   }
+
    try {
-      const response = await api.post(`/api/agent/${chatId}`, { text });
+      const response = await api.post(`/api/agent/${chatId}`, payload);
 
       if (response.data.successful) {
          const result = response.data.data;

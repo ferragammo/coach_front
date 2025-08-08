@@ -1,10 +1,8 @@
 import { createContext, useEffect, useRef, useState } from "react";
 import { ChatModelType } from "../static/enums/ChatModelType";
-import {
-   createMessage,
-   getAllChatMessages,
-} from "../api/messageApi";
+import { createMessage, getAllChatMessages } from "../api/messageApi";
 import { createChat, getChatById, getChats } from "../api/chatApi";
+import { defaultTemplateText } from "../static/defaultTemplateText";
 
 export const ContextApp = createContext();
 
@@ -19,6 +17,7 @@ const AppContext = ({ children }) => {
    const [message, setMessage] = useState([]);
    const [fileData, setFileData] = useState(null);
    const [isLoading, setIsLoading] = useState(false);
+   const [templateText, setTemplateText] = useState(defaultTemplateText);
 
    const [selectedChat, setSelectedChat] = useState(null);
    //'674d7f4eed4768a959ab111c'
@@ -44,7 +43,8 @@ const AppContext = ({ children }) => {
                setSelectedChat(newChat.data.id);
                const responseMessage = await createMessage(
                   newChat.data.id,
-                  text
+                  text,
+                  templateText
                );
                setMessage((prevMessages) => [
                   ...prevMessages,
@@ -58,7 +58,11 @@ const AppContext = ({ children }) => {
          }
          getAllChats();
       } else {
-         const responseMessage = await createMessage(selectedChat, text);
+         const responseMessage = await createMessage(
+            selectedChat,
+            text,
+            templateText
+            );
          setMessage((prevMessages) => [
             ...prevMessages,
             { text: responseMessage.text, isBot: true },
@@ -66,8 +70,6 @@ const AppContext = ({ children }) => {
       }
       setIsLoading(false);
    };
-
-
 
    const handleKeyPress = (e) => {
       if (!isLoading) {
@@ -80,7 +82,6 @@ const AppContext = ({ children }) => {
    };
 
    const loadChatMessages = async (chatId) => {
-
       if (chatId) {
          const result = await getAllChatMessages(chatId);
          console.log(result);
@@ -103,7 +104,6 @@ const AppContext = ({ children }) => {
 
    const selectedChatById = async (chatId) => {
       try {
-    
          const chat = await getChatById(chatId);
          if (chat) {
             setSelectedChat(chatId);
@@ -116,7 +116,6 @@ const AppContext = ({ children }) => {
 
    const getAllChats = async () => {
       try {
-        
          const response = await getChats(0, 10);
          if (response.data) {
             setChats(response.data);
@@ -136,28 +135,30 @@ const AppContext = ({ children }) => {
       <ContextApp.Provider
          value={{
             showSlide,
-                setShowSlide,
-                Mobile,
-                setMobile,
-                chatValue,
-                setChatValue,
-                handleSend,
-                message,
-                setMessage,
-                chats,
-                msgEnd,
-                handleKeyPress,
-                loadChatMessages,
-                selectedModel,
-                setSelectedModel,
-                setSelectedChat,
-                selectedChat,
-                selectedChatById,
-                setFileData,
-                getAllChats,
-                setChats,
-                fileData,
-                isLoading
+            setShowSlide,
+            Mobile,
+            setMobile,
+            chatValue,
+            setChatValue,
+            handleSend,
+            message,
+            setMessage,
+            chats,
+            msgEnd,
+            handleKeyPress,
+            loadChatMessages,
+            selectedModel,
+            setSelectedModel,
+            setSelectedChat,
+            selectedChat,
+            selectedChatById,
+            setFileData,
+            getAllChats,
+            setChats,
+            fileData,
+            isLoading,
+            templateText,
+            setTemplateText,
          }}
       >
          {children}

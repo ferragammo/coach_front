@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ContextApp } from '../utils/Context';
 import { LuPanelLeftClose, LuPanelLeftOpen } from 'react-icons/lu';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
-import { BsPaperclip } from 'react-icons/bs';
+// import { BsPaperclip } from 'react-icons/bs';
+import { TbTemplate } from "react-icons/tb";
 import { IoArrowUp } from 'react-icons/io5';
 import Chat from './Chat';
 import ChatModelDropdown from './ChatModelDropdown';
 import { AiFillCloseCircle } from 'react-icons/ai';
+import TemplateModal from './TemplateModal';
 
 function ChatContainer() {
   const {
@@ -27,9 +29,14 @@ function ChatContainer() {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [filePreview, setFilePreview] = useState(null); 
+  const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
 
-  const handleClick = () => {
-    document.getElementById('file-upload').click();
+  // const handleClick = () => {
+  //   document.getElementById('file-upload').click();
+  // };
+
+  const handleTemplateClick = () => {
+    setIsTemplateModalOpen(true);
   };
 
   useEffect(() => {
@@ -140,7 +147,7 @@ function ChatContainer() {
           
           />
           <div className="m-3 gap-3 flex">
-            <BsPaperclip
+            {/* <BsPaperclip
               title="upload image"
               className={` p-1 rounded-full m text-3xl  bg-black text-white cursor-pointer 
                         `}
@@ -152,6 +159,12 @@ function ChatContainer() {
               accept=".jpg, .png"
               className="hidden"
              
+            /> */}
+            <TbTemplate
+              title="upload image"
+              className={` p-1 rounded-full text-3xl  bg-black text-white cursor-pointer 
+                        `}
+              onClick={handleTemplateClick}
             />
             <IoArrowUp
               title="send message"
@@ -166,6 +179,7 @@ function ChatContainer() {
           </div>
         </span>
       </div>
+      {isTemplateModalOpen && <TemplateModal setTemplateModalOpen={setIsTemplateModalOpen} />}
     </div>
   );
 }

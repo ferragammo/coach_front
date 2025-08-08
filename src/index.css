@@ -3,17 +3,18 @@
 @tailwind utilities;
 
 .scroll::-webkit-scrollbar {
-  width: 7px; /* width of the entire scrollbar */
+  width: 6px;
 }
 
 .scroll::-webkit-scrollbar-track {
-  background: #30303000; /* color of the tracking area */
+  background: #30303000;
 }
 
 .scroll::-webkit-scrollbar-thumb {
-  background-color: rgb(70, 70, 70); /* color of the scroll thumb */
-  border-radius: 8px; /* roundness of the scroll thumb */
+  background-color: rgb(70, 70, 70);
+  border-radius: 8px;
 }
+
 .group h1, 
 .group h2, 
 .group h3, 
