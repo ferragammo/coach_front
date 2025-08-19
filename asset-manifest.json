@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/coach_front/static/css/main.15510784.css",
-    "main.js": "/coach_front/static/js/main.29c53345.js",
+    "main.js": "/coach_front/static/js/main.f46122e2.js",
     "index.html": "/coach_front/index.html",
     "main.15510784.css.map": "/coach_front/static/css/main.15510784.css.map",
-    "main.29c53345.js.map": "/coach_front/static/js/main.29c53345.js.map"
+    "main.f46122e2.js.map": "/coach_front/static/js/main.f46122e2.js.map"
   },
   "entrypoints": [
     "static/css/main.15510784.css",
-    "static/js/main.29c53345.js"
+    "static/js/main.f46122e2.js"
   ]
 }
