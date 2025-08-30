@@ -3,6 +3,7 @@ import { ChatModelType } from "../static/enums/ChatModelType";
 import { createMessage, getAllChatMessages } from "../api/messageApi";
 import { createChat, getChatById, getChats } from "../api/chatApi";
 import { defaultTemplateText } from "../static/defaultTemplateText";
+import { getDocumentsAmount } from "../api/documentApi";
 
 export const ContextApp = createContext();
 
@@ -15,9 +16,11 @@ const AppContext = ({ children }) => {
       ChatModelType.gpt_4o_mini
    );
    const [message, setMessage] = useState([]);
+   const [documentsAmount, setDocumentsAmount] = useState(null);
    const [fileData, setFileData] = useState(null);
    const [isLoading, setIsLoading] = useState(false);
    const [templateText, setTemplateText] = useState(defaultTemplateText);
+
 
    const [selectedChat, setSelectedChat] = useState(null);
    //'674d7f4eed4768a959ab111c'
@@ -127,8 +130,16 @@ const AppContext = ({ children }) => {
       }
    };
 
+   const handleDocumentsAmount = async () => {
+      const response = await getDocumentsAmount();
+      if (response.successful) {
+         setDocumentsAmount(response.data.amountOfDocuments);
+      }
+   };
+
    useEffect(() => {
       getAllChats();
+      handleDocumentsAmount();
    }, []);
 
    return (
@@ -159,6 +170,7 @@ const AppContext = ({ children }) => {
             isLoading,
             templateText,
             setTemplateText,
+            documentsAmount,
          }}
       >
          {children}
