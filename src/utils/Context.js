@@ -11,6 +11,7 @@ const AppContext = ({ children }) => {
    const [showSlide, setShowSlide] = useState(false);
    const [Mobile, setMobile] = useState(false);
    const [chats, setChats] = useState([]);
+   const [chatsAmount, setChatsAmount] = useState(0);
    const [chatValue, setChatValue] = useState("");
    const [selectedModel, setSelectedModel] = useState(
       ChatModelType.gpt_4o_mini
@@ -119,9 +120,10 @@ const AppContext = ({ children }) => {
 
    const getAllChats = async () => {
       try {
-         const response = await getChats(0, 10);
+         const response = await getChats(0, 1000);
          if (response.data) {
             setChats(response.data);
+            setChatsAmount(response.paging.totalCount);
          } else {
             console.log(response.error);
          }
@@ -155,6 +157,7 @@ const AppContext = ({ children }) => {
             message,
             setMessage,
             chats,
+         chatsAmount,
             msgEnd,
             handleKeyPress,
             loadChatMessages,

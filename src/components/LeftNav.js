@@ -19,7 +19,7 @@ function LeftNav() {
     setSelectedChat,
     selectedChat,
     selectedChatById,
-
+    chatsAmount,
     
     loadChatMessages,
   } = useContext(ContextApp);
@@ -121,7 +121,7 @@ function LeftNav() {
       }
     >
       <div className="flex items-center justify-between w-full">
-        <span className="text-xl font-semibold">Chatbot</span>
+        <span className="text-xl font-semibold">Chats Amount: {chatsAmount}</span>
         <button
           className="rounded px-3 py-[9px] hidden lg:flex items-center justify-center cursor-pointer text-white m-1 hover:bg-gray-600 duration-200"
           onClick={handleCreateChat}
@@ -129,12 +129,12 @@ function LeftNav() {
           <AiOutlinePlus fontSize={16} />
         </button>
       </div>
-      <div className="h-full w-full p-2 flex items-start justify-start flex-col overflow-hidden overflow-y-auto text-sm scroll my-2">
+      <div className="h-full w-full p-2 gap-3 flex items-start justify-start flex-col overflow-y-auto text-sm scroll my-2">
         {chats && chats.length > 0 ? (
           chats.map((chat) => (
             <div
               key={chat.id}
-              className={`rounded-lg w-full py-2 px-3 text-xs my-2 flex items-center justify-between cursor-pointer hover:bg-[#212121] transition-all duration-300 overflow-hidden truncate whitespace-nowrap ${
+              className={`rounded-lg w-full py-5 px-3 text-xs my-2 flex items-center justify-between cursor-pointer hover:bg-[#212121] transition-all duration-300 overflow-hidden truncate whitespace-nowrap ${
                 chat.id === selectedChat ? 'bg-[#212121]' : ''
               }`}
               onClick={() => handleSelectChat(chat.id)}
